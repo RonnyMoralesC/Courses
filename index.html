@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course materials</title>
+<meta name="description" content="Syllabi, slides, lecture notes, problem sheets and solutions for undergraduate and graduate mathematics courses.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23d8dbd5'/%3E%3Cpath d='M14 12C28 6 42 14 38 26 35 38 16 40 11 30 7 22 8 15 14 12Z' fill='none' stroke='%231b2026' stroke-width='2.5'/%3E%3Ccircle cx='27' cy='22' r='3' fill='%231b2026'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Libre+Bodoni:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root{
+  --ink:#1b2026;
+  --ink-soft:#5d666f;
+  --ink-faint:#8b939b;
+  --desk:#d8dbd5;
+  --sheet:#fff;
+  --line:rgba(27,32,38,.13);
+  --line-firm:rgba(27,32,38,.24);
+  --serif:"Libre Bodoni","Bodoni MT",Didot,"Times New Roman",serif;
+  --sans:Archivo,"Helvetica Neue",Arial,sans-serif;
+  --pad:clamp(1.25rem,4vw,2.5rem);
+  --accent:var(--ink); /* overridden per course */
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--desk);
+  color:var(--ink);
+  font:400 1rem/1.6 var(--sans);
+  padding:clamp(1.5rem,5vw,4rem) clamp(1rem,5vw,4rem) 5rem;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.wrap{max-width:62rem;margin:0 auto}
+
+/* ============================================================
+   Masthead
+   ============================================================ */
+.masthead{margin:0 0 clamp(2rem,5vw,3.25rem)}
+.masthead h1{
+  font:400 clamp(2.4rem,7vw,4rem)/1.02 var(--serif);
+  letter-spacing:-.015em;margin:0 0 .6rem;
+}
+.masthead p{max-width:54ch;margin:0;color:var(--ink-soft);font-size:1.0625rem}
+.byline{
+  font:400 1.0625rem/1.4 var(--serif);font-style:italic;
+  color:var(--ink-soft);margin:0 0 .35rem;
+}
+
+/* ============================================================
+   Course grid (home)
+   ============================================================ */
+.grid{display:grid;gap:clamp(.9rem,2vw,1.15rem);grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));margin:0;padding:0;list-style:none}
+.sheet{
+  background:var(--sheet);border:1px solid var(--line);border-radius:2px;
+  box-shadow:0 1px 0 rgba(27,32,38,.06),0 10px 18px -16px rgba(27,32,38,.7);
+}
+.card{position:relative;display:block;text-decoration:none;padding:1.35rem 1.4rem 1.25rem 1.75rem;height:100%;transition:background .15s ease}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent)}
+.card:hover{background:color-mix(in srgb,var(--accent) 5%,#fff)}
+.card:hover .card-title{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.card-title{font:400 1.375rem/1.2 var(--serif);margin:0 0 .1rem;letter-spacing:-.005em}
+.card-sub{margin:0;font-size:.8125rem;color:var(--ink-faint)}
+.card-blurb{margin:.7rem 0 0;font-size:.9375rem;line-height:1.5;color:var(--ink-soft)}
+.card-count{margin:1rem 0 0;font-size:.8125rem;color:var(--ink-faint)}
+.mark{flex:none;color:var(--accent)}
+
+/* ============================================================
+   Course page
+   ============================================================ */
+.back{
+  display:inline-block;margin:0 0 1.5rem;font-size:.9375rem;color:var(--ink-soft);
+  text-decoration:none;border-bottom:1px solid var(--line-firm);padding-bottom:1px;
+}
+.back:hover{color:var(--ink);border-color:currentColor}
+
+.course-head{display:flex;gap:clamp(1rem,3vw,1.75rem);align-items:flex-start;margin:0 0 2.25rem}
+.course-head h2{font:400 clamp(2rem,5.5vw,3rem)/1.05 var(--serif);margin:0 0 .35rem;letter-spacing:-.015em}
+.course-head .sub{margin:0;color:var(--ink-faint);font-size:.9375rem}
+.course-head .blurb{margin:.75rem 0 0;max-width:58ch;color:var(--ink-soft)}
+.mark-lg{flex:none;color:var(--accent);margin-top:.35rem}
+
+section.block{margin:0 0 1.75rem}
+.block h3{
+  font:600 1rem/1.3 var(--sans);margin:0 0 .75rem;
+  display:flex;align-items:baseline;gap:.6rem;
+}
+.block h3 .tally{font:400 .8125rem/1 var(--sans);color:var(--ink-faint)}
+
+/* Syllabus: the "start here" document */
+.syllabus{
+  display:flex;flex-wrap:wrap;align-items:center;gap:1rem;justify-content:space-between;
+  padding:1.1rem 1.25rem;text-decoration:none;border-radius:2px;
+  background:var(--sheet);border:1px solid var(--line-firm);
+  background:color-mix(in srgb,var(--accent) 7%,#fff);
+  border-color:color-mix(in srgb,var(--accent) 28%,#fff);
+}
+.syllabus:hover{background:color-mix(in srgb,var(--accent) 12%,#fff)}
+.syllabus strong{font-weight:500;display:block}
+.syllabus span{font-size:.875rem;color:var(--ink-soft)}
+.syllabus .go{font-size:.875rem;color:var(--accent);font-weight:500;white-space:nowrap}
+
+/* Document rows */
+.rows{margin:0;padding:0;list-style:none}
+.row{display:flex;align-items:center;gap:1rem;padding:.8rem 1.25rem;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .n{
+  font:400 1.0625rem/1 var(--serif);color:var(--accent);
+  min-width:1.4rem;text-align:right;flex:none;font-variant-numeric:lining-nums;
+}
+.row .name{flex:1 1 auto;min-width:0;text-decoration:none}
+.row a.name:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.row .actions{display:flex;gap:.4rem;flex:none}
+
+.btn{
+  font:500 .8125rem/1 var(--sans);text-decoration:none;white-space:nowrap;
+  padding:.5rem .7rem;border:1px solid var(--line-firm);
+  border-color:color-mix(in srgb,var(--accent) 40%,#fff);
+  color:var(--accent);border-radius:3px;background:#fff;transition:background .15s ease;
+}
+.btn:hover{background:color-mix(in srgb,var(--accent) 10%,#fff)}
+.btn.pending{
+  border-style:dashed;border-color:var(--line-firm);color:var(--ink-faint);
+  background:transparent;cursor:default;
+}
+
+.empty{padding:1rem 1.25rem;color:var(--ink-faint);font-size:.9375rem}
+
+/* Mark drawing animation, played once when a course opens */
+.draw .stroke{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw .9s ease forwards}
+.draw .pop{opacity:0;animation:pop .4s ease .55s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{to{opacity:1}}
+
+footer{margin:3.5rem 0 0;padding-top:1.25rem;border-top:1px solid var(--line-firm);color:var(--ink-faint);font-size:.875rem}
+footer a{color:var(--ink-soft)}
+
+@media (max-width:34rem){
+  .row{flex-wrap:wrap;gap:.6rem 1rem}
+  .row .name{flex:1 1 100%;order:2}
+  .row .n{order:1}
+  .row .actions{order:3;flex:1 1 100%}
+  .btn{flex:1 1 auto;text-align:center}
+  .course-head{gap:1rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+/* ==========================================================================
+   ★ EDIT BELOW — this is the only part you ever need to change. ★
+
+   To add a new file:
+     1. Upload the PDF into  files/<course-folder>/
+     2. Add one line to the matching list here, e.g.
+            { title: "Problem sheet 5", problems: "files/linear-algebra/sheet-05.pdf",
+              solutions: "" },
+     3. Save. An empty solutions: "" shows as "Solutions to follow".
+
+   Rules of thumb:
+     • Every "file:" value is just the path to the PDF, relative to this page.
+     • Order in the list = order on the page.
+     • Delete a whole course by deleting its { ... } block.
+   ========================================================================== */
+
+const SITE = {
+  title: "Course materials",
+  lecturer: "Your name here",
+  intro: "Syllabi, lecture slides, handwritten notes, problem sheets and worked solutions for the courses I teach. Everything is a PDF and free to download."
+};
+
+const COURSES = [
+  {
+    id: "complex-analysis",
+    title: "Complex Analysis",
+    mark: "contour",
+    color: "#6e4b8e",
+    term: "Autumn 2026",
+    blurb: "Holomorphic functions, contour integration, and the surprisingly rigid consequences of complex differentiability.",
+    syllabus: "files/complex-analysis/syllabus.pdf",
+    slides: [
+      { title: "The complex plane and holomorphic functions", file: "files/complex-analysis/slides-01.pdf" },
+      { title: "Power series and analyticity",                file: "files/complex-analysis/slides-02.pdf" },
+      { title: "Contour integration and Cauchy's theorem",    file: "files/complex-analysis/slides-03.pdf" },
+      { title: "Cauchy's integral formula",                   file: "files/complex-analysis/slides-04.pdf" },
+      { title: "Laurent series and singularities",            file: "files/complex-analysis/slides-05.pdf" },
+      { title: "The residue theorem",                         file: "files/complex-analysis/slides-06.pdf" },
+      { title: "Conformal maps",                              file: "files/complex-analysis/slides-07.pdf" }
+    ],
+    notes: [
+      { title: "Weeks 1–3: analyticity and power series", file: "files/complex-analysis/notes-01.pdf" },
+      { title: "Weeks 4–6: Cauchy theory",                file: "files/complex-analysis/notes-02.pdf" },
+      { title: "Weeks 7–10: residues and conformal maps", file: "files/complex-analysis/notes-03.pdf" }
+    ],
+    sheets: [
+      { title: "Problem sheet 1", problems: "files/complex-analysis/sheet-01.pdf", solutions: "files/complex-analysis/sheet-01-solutions.pdf" },
+      { title: "Problem sheet 2", problems: "files/complex-analysis/sheet-02.pdf", solutions: "files/complex-analysis/sheet-02-solutions.pdf" },
+      { title: "Problem sheet 3", problems: "files/complex-analysis/sheet-03.pdf", solutions: "" },
+      { title: "Problem sheet 4", problems: "files/complex-analysis/sheet-04.pdf", solutions: "" }
+    ]
+  },
+
+  {
+    id: "linear-algebra",
+    title: "Linear Algebra",
+    mark: "span",
+    color: "#26635f",
+    term: "Autumn 2026",
+    blurb: "Vector spaces, linear maps and the classification of operators, built from the axioms rather than from matrices.",
+    syllabus: "files/linear-algebra/syllabus.pdf",
+    slides: [
+      { title: "Vector spaces and subspaces",        file: "files/linear-algebra/slides-01.pdf" },
+      { title: "Linear maps, bases and dimension",   file: "files/linear-algebra/slides-02.pdf" },
+      { title: "Rank, nullity and change of basis",  file: "files/linear-algebra/slides-03.pdf" },
+      { title: "Determinants",                       file: "files/linear-algebra/slides-04.pdf" },
+      { title: "Eigenvalues and diagonalisation",    file: "files/linear-algebra/slides-05.pdf" },
+      { title: "Inner product spaces",               file: "files/linear-algebra/slides-06.pdf" },
+      { title: "The spectral theorem",               file: "files/linear-algebra/slides-07.pdf" },
+      { title: "Jordan normal form",                 file: "files/linear-algebra/slides-08.pdf" }
+    ],
+    notes: [
+      { title: "Weeks 1–4: spaces and maps",          file: "files/linear-algebra/notes-01.pdf" },
+      { title: "Weeks 5–8: determinants and spectra", file: "files/linear-algebra/notes-02.pdf" },
+      { title: "Weeks 9–11: canonical forms",         file: "files/linear-algebra/notes-03.pdf" }
+    ],
+    sheets: [
+      { title: "Problem sheet 1", problems: "files/linear-algebra/sheet-01.pdf", solutions: "files/linear-algebra/sheet-01-solutions.pdf" },
+      { title: "Problem sheet 2", problems: "files/linear-algebra/sheet-02.pdf", solutions: "files/linear-algebra/sheet-02-solutions.pdf" },
+      { title: "Problem sheet 3", problems: "files/linear-algebra/sheet-03.pdf", solutions: "files/linear-algebra/sheet-03-solutions.pdf" },
+      { title: "Problem sheet 4", problems: "files/linear-algebra/sheet-04.pdf", solutions: "" },
+      { title: "Problem sheet 5", problems: "files/linear-algebra/sheet-05.pdf", solutions: "" }
+    ]
+  },
+
+  {
+    id: "real-analysis",
+    title: "Real Analysis",
+    mark: "epsilon",
+    color: "#a04426",
+    term: "Spring 2026",
+    blurb: "Completeness of the reals, limits, and a careful account of what differentiation and integration actually mean.",
+    syllabus: "files/real-analysis/syllabus.pdf",
+    slides: [
+      { title: "The real numbers and completeness",  file: "files/real-analysis/slides-01.pdf" },
+      { title: "Sequences and limits",               file: "files/real-analysis/slides-02.pdf" },
+      { title: "Series and convergence tests",       file: "files/real-analysis/slides-03.pdf" },
+      { title: "Continuity",                         file: "files/real-analysis/slides-04.pdf" },
+      { title: "Differentiation and the mean value theorem", file: "files/real-analysis/slides-05.pdf" },
+      { title: "The Riemann integral",               file: "files/real-analysis/slides-06.pdf" },
+      { title: "Uniform convergence",                file: "files/real-analysis/slides-07.pdf" }
+    ],
+    notes: [
+      { title: "Weeks 1–4: sequences and series",       file: "files/real-analysis/notes-01.pdf" },
+      { title: "Weeks 5–8: continuity and derivatives", file: "files/real-analysis/notes-02.pdf" },
+      { title: "Weeks 9–11: integration",               file: "files/real-analysis/notes-03.pdf" }
+    ],
+    sheets: [
+      { title: "Problem sheet 1", problems: "files/real-analysis/sheet-01.pdf", solutions: "files/real-analysis/sheet-01-solutions.pdf" },
+      { title: "Problem sheet 2", problems: "files/real-analysis/sheet-02.pdf", solutions: "files/real-analysis/sheet-02-solutions.pdf" },
+      { title: "Problem sheet 3", problems: "files/real-analysis/sheet-03.pdf", solutions: "files/real-analysis/sheet-03-solutions.pdf" },
+      { title: "Problem sheet 4", problems: "files/real-analysis/sheet-04.pdf", solutions: "files/real-analysis/sheet-04-solutions.pdf" }
+    ]
+  },
+
+  {
+    id: "general-topology",
+    title: "General Topology",
+    mark: "torus",
+    color: "#35548f",
+    term: "Spring 2026",
+    blurb: "Open sets as the minimal language for continuity, and what connectedness, compactness and separation buy you.",
+    syllabus: "files/general-topology/syllabus.pdf",
+    slides: [
+      { title: "Topological spaces and bases",              file: "files/general-topology/slides-01.pdf" },
+      { title: "Continuity and homeomorphism",              file: "files/general-topology/slides-02.pdf" },
+      { title: "Subspace, product and quotient topologies", file: "files/general-topology/slides-03.pdf" },
+      { title: "Connectedness",                             file: "files/general-topology/slides-04.pdf" },
+      { title: "Compactness",                               file: "files/general-topology/slides-05.pdf" },
+      { title: "Separation axioms",                         file: "files/general-topology/slides-06.pdf" },
+      { title: "Urysohn's lemma and metrisation",           file: "files/general-topology/slides-07.pdf" }
+    ],
+    notes: [
+      { title: "Weeks 1–5: spaces, maps and constructions", file: "files/general-topology/notes-01.pdf" },
+      { title: "Weeks 6–10: compactness and separation",    file: "files/general-topology/notes-02.pdf" }
+    ],
+    sheets: [
+      { title: "Problem sheet 1", problems: "files/general-topology/sheet-01.pdf", solutions: "files/general-topology/sheet-01-solutions.pdf" },
+      { title: "Problem sheet 2", problems: "files/general-topology/sheet-02.pdf", solutions: "files/general-topology/sheet-02-solutions.pdf" },
+      { title: "Problem sheet 3", problems: "files/general-topology/sheet-03.pdf", solutions: "" }
+    ]
+  },
+
+  {
+    id: "classical-mechanics",
+    title: "Classical Mechanics",
+    mark: "pendulum",
+    color: "#7d6118",
+    term: "Autumn 2026",
+    blurb: "From Newton's laws to the variational principles that replace them, ending in Hamiltonian phase space.",
+    syllabus: "files/classical-mechanics/syllabus.pdf",
+    slides: [
+      { title: "Newtonian mechanics and conservation laws", file: "files/classical-mechanics/slides-01.pdf" },
+      { title: "The calculus of variations",                file: "files/classical-mechanics/slides-02.pdf" },
+      { title: "Lagrangian mechanics and constraints",      file: "files/classical-mechanics/slides-03.pdf" },
+      { title: "Central forces and orbits",                 file: "files/classical-mechanics/slides-04.pdf" },
+      { title: "Rigid body motion",                         file: "files/classical-mechanics/slides-05.pdf" },
+      { title: "Hamiltonian mechanics",                     file: "files/classical-mechanics/slides-06.pdf" },
+      { title: "Canonical transformations",                 file: "files/classical-mechanics/slides-07.pdf" }
+    ],
+    notes: [
+      { title: "Weeks 1–4: Newton and variational principles", file: "files/classical-mechanics/notes-01.pdf" },
+      { title: "Weeks 5–8: Lagrangian mechanics",              file: "files/classical-mechanics/notes-02.pdf" },
+      { title: "Weeks 9–12: Hamiltonian mechanics",            file: "files/classical-mechanics/notes-03.pdf" }
+    ],
+    sheets: [
+      { title: "Problem sheet 1", problems: "files/classical-mechanics/sheet-01.pdf", solutions: "files/classical-mechanics/sheet-01-solutions.pdf" },
+      { title: "Problem sheet 2", problems: "files/classical-mechanics/sheet-02.pdf", solutions: "files/classical-mechanics/sheet-02-solutions.pdf" },
+      { title: "Problem sheet 3", problems: "files/classical-mechanics/sheet-03.pdf", solutions: "files/classical-mechanics/sheet-03-solutions.pdf" },
+      { title: "Problem sheet 4", problems: "files/classical-mechanics/sheet-04.pdf", solutions: "" },
+      { title: "Problem sheet 5", problems: "files/classical-mechanics/sheet-05.pdf", solutions: "" }
+    ]
+  },
+
+  {
+    id: "functional-analysis",
+    title: "Functional Analysis",
+    mark: "measure",
+    color: "#52642a",
+    term: "Spring 2026",
+    blurb: "Measure theory and the Lebesgue integral first, then Banach and Hilbert spaces and the operators acting on them.",
+    syllabus: "files/functional-analysis/syllabus.pdf",
+    slides: [
+      { title: "σ-algebras and measures",                 file: "files/functional-analysis/slides-01.pdf" },
+      { title: "The Lebesgue integral",                   file: "files/functional-analysis/slides-02.pdf" },
+      { title: "Convergence theorems",                    file: "files/functional-analysis/slides-03.pdf" },
+      { title: "Lᵖ spaces",                               file: "files/functional-analysis/slides-04.pdf" },
+      { title: "Banach spaces and the Hahn–Banach theorem", file: "files/functional-analysis/slides-05.pdf" },
+      { title: "Hilbert spaces and orthogonality",        file: "files/functional-analysis/slides-06.pdf" },
+      { title: "Bounded operators and the spectrum",      file: "files/functional-analysis/slides-07.pdf" },
+      { title: "Compact operators and the spectral theorem", file: "files/functional-analysis/slides-08.pdf" }
+    ],
+    notes: [
+      { title: "Part I: measure and integration", file: "files/functional-analysis/notes-01.pdf" },
+      { title: "Part II: normed and Hilbert spaces", file: "files/functional-analysis/notes-02.pdf" },
+      { title: "Part III: operator theory", file: "files/functional-analysis/notes-03.pdf" }
+    ],
+    sheets: [
+      { title: "Problem sheet 1", problems: "files/functional-analysis/sheet-01.pdf", solutions: "files/functional-analysis/sheet-01-solutions.pdf" },
+      { title: "Problem sheet 2", problems: "files/functional-analysis/sheet-02.pdf", solutions: "files/functional-analysis/sheet-02-solutions.pdf" },
+      { title: "Problem sheet 3", problems: "files/functional-analysis/sheet-03.pdf", solutions: "" },
+      { title: "Problem sheet 4", problems: "files/functional-analysis/sheet-04.pdf", solutions: "" }
+    ]
+  }
+];
+
+/* ==========================================================================
+   ★ EDIT ABOVE. Nothing below needs changing. ★
+   ========================================================================== */
+
+/* --- subject marks ------------------------------------------------------ */
+const MARKS = {
+  contour: `<path class="stroke" d="M6 24h36M24 6v36" opacity=".25" stroke-width="1"/>
+            <path class="stroke" d="M15 11c13-5 26 3 22 15-3 11-21 13-26 4-4-8-3-16 4-19Z"/>
+            <circle class="pop" cx="28" cy="21" r="2.4" fill="currentColor" stroke="none"/>
+            <circle class="pop" cx="18" cy="29" r="2.4" fill="none"/>`,
+  span:    `<path class="stroke" d="M10 40 32 32M10 40 20 16"/>
+            <path class="stroke" d="M32 32 42 8M20 16 42 8" stroke-dasharray="3 3" opacity=".55"/>
+            <circle class="pop" cx="10" cy="40" r="2" fill="currentColor" stroke="none"/>`,
+  epsilon: `<path class="stroke" d="M5 18h38M5 30h38" stroke-dasharray="3 3" opacity=".5"/>
+            <path class="stroke" d="M5 24h38" opacity=".3"/>
+            <path class="stroke" d="M7 11 12 37 17 15 22 32 27 20 32 27 37 23 42 25"/>`,
+  torus:   `<ellipse class="stroke" cx="24" cy="24" rx="19" ry="13"/>
+            <path class="stroke" d="M15 23c5 6 13 6 18 0"/>
+            <path class="stroke" d="M17 26c4-5 10-5 14 0"/>`,
+  pendulum:`<path class="stroke" d="M12 8h24"/>
+            <path class="stroke" d="M24 8 32 34"/>
+            <path class="stroke" d="M16 34q8 5 16 0" stroke-dasharray="3 3" opacity=".55"/>
+            <circle class="pop" cx="32" cy="34" r="4.5" fill="currentColor" stroke="none"/>`,
+  measure: `<path class="stroke" d="M6 40h36" opacity=".4"/>
+            <path class="stroke" d="M6 40V27h8V17h8v14h8V11h8v11h4"/>
+            <path class="stroke" d="M6 22h36" stroke-dasharray="3 3" opacity=".55"/>`
+};
+
+function markSvg(name, size, cls){
+  return `<svg class="${cls}" width="${size}" height="${size}" viewBox="0 0 48 48" fill="none"
+    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+    aria-hidden="true">${MARKS[name] || ""}</svg>`;
+}
+
+/* --- helpers ------------------------------------------------------------ */
+const esc = s => String(s).replace(/[&<>"']/g, c =>
+  ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+const app = document.getElementById("app");
+const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
+
+/* --- home --------------------------------------------------------------- */
+function renderHome(){
+  document.title = SITE.title;
+  document.documentElement.style.setProperty("--accent", "var(--ink)");
+
+  const cards = COURSES.map(c => `
+    <li class="sheet" style="--accent:${esc(c.color)}">
+      <a class="card" href="#/${esc(c.id)}">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title">${esc(c.title)}</h2>
+            <p class="card-sub">${esc(c.term || "")}</p>
+          </div>
+          ${markSvg(c.mark, 40, "mark")}
+        </div>
+        <p class="card-blurb">${esc(c.blurb)}</p>
+        <p class="card-count">${plural(c.slides.length, "slide")}, ${plural(c.sheets.length, "problem sheet")}</p>
+      </a>
+    </li>`).join("");
+
+  app.innerHTML = `
+    <header class="masthead">
+      <p class="byline">${esc(SITE.lecturer)}</p>
+      <h1>${esc(SITE.title)}</h1>
+      <p>${esc(SITE.intro)}</p>
+    </header>
+    <ul class="grid">${cards}</ul>
+    <footer><p>Materials are provided for the students on these courses. Corrections are welcome.</p></footer>`;
+}
+
+/* --- course ------------------------------------------------------------- */
+function docList(items, emptyMsg){
+  if(!items || !items.length) return `<div class="sheet"><p class="empty">${esc(emptyMsg)}</p></div>`;
+  const rows = items.map((it, i) => `
+    <li class="row">
+      <span class="n">${i + 1}</span>
+      <a class="name" href="${esc(it.file)}" target="_blank" rel="noopener">${esc(it.title)}</a>
+      <span class="actions"><span class="btn">Open PDF</span></span>
+    </li>`).join("");
+  return `<ul class="rows sheet">${rows}</ul>`;
+}
+
+function sheetList(items){
+  if(!items || !items.length) return `<div class="sheet"><p class="empty">The first problem sheet will appear here once we have covered enough ground.</p></div>`;
+  const rows = items.map((s, i) => `
+    <li class="row">
+      <span class="n">${i + 1}</span>
+      <span class="name">${esc(s.title)}</span>
+      <span class="actions">
+        <a class="btn" href="${esc(s.problems)}" target="_blank" rel="noopener">Problems</a>
+        ${s.solutions
+          ? `<a class="btn" href="${esc(s.solutions)}" target="_blank" rel="noopener">Solutions</a>`
+          : `<span class="btn pending" aria-disabled="true">Solutions to follow</span>`}
+      </span>
+    </li>`).join("");
+  return `<ul class="rows sheet">${rows}</ul>`;
+}
+
+function renderCourse(c){
+  document.title = `${c.title} — ${SITE.title}`;
+  document.documentElement.style.setProperty("--accent", c.color);
+
+  app.innerHTML = `
+    <a class="back" href="#/">All courses</a>
+    <header class="course-head">
+      ${markSvg(c.mark, 64, "mark-lg draw")}
+      <div>
+        <h2>${esc(c.title)}</h2>
+        <p class="sub">${esc(c.term || "")}</p>
+        <p class="blurb">${esc(c.blurb)}</p>
+      </div>
+    </header>
+
+    <section class="block">
+      <h3>Syllabus</h3>
+      <a class="syllabus" href="${esc(c.syllabus)}" target="_blank" rel="noopener">
+        <span><strong>What this course covers</strong>
+        <span>Topics, prerequisites, assessment and reading.</span></span>
+        <span class="go">Open PDF</span>
+      </a>
+    </section>
+
+    <section class="block">
+      <h3>Slides <span class="tally">${plural(c.slides.length, "deck")}</span></h3>
+      ${docList(c.slides, "Slides will be posted as the course runs.")}
+    </section>
+
+    <section class="block">
+      <h3>Lecture notes <span class="tally">${plural((c.notes || []).length, "file")}</span></h3>
+      ${docList(c.notes, "Notes will be posted as the course runs.")}
+    </section>
+
+    <section class="block">
+      <h3>Problem sheets <span class="tally">${plural(c.sheets.length, "sheet")}</span></h3>
+      ${sheetList(c.sheets)}
+    </section>
+
+    <footer><p><a href="#/">Back to all courses</a></p></footer>`;
+
+  animateMark();
+}
+
+/* One orchestrated moment: the subject mark draws itself when a course opens. */
+function animateMark(){
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.querySelectorAll(".draw .stroke").forEach((el, i) => {
+    const len = Math.ceil(el.getTotalLength ? el.getTotalLength() : 200);
+    el.style.setProperty("--len", len);
+    el.style.animationDelay = (i * 0.12) + "s";
+  });
+}
+
+/* --- routing ------------------------------------------------------------ */
+function route(){
+  const id = location.hash.replace(/^#\/?/, "");
+  const course = COURSES.find(c => c.id === id);
+  course ? renderCourse(course) : renderHome();
+  window.scrollTo(0, 0);
+}
+addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
