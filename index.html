@@ -189,6 +189,7 @@ const SITE = {
 };
 
 const COURSES = [
+
   {
     id: "complex-analysis",
     title: "Complex Analysis",
@@ -196,20 +197,41 @@ const COURSES = [
     color: "#6e4b8e",
     term: "Autumn 2026",
     blurb: "Holomorphic functions, contour integration, and the surprisingly rigid consequences of complex differentiability.",
-    syllabus: "",
+
+    syllabus: "files/complex-analysis/Syllabus_CA.pdf",
+
     slidesAll: "files/complex-analysis/PresCA_all.pdf",
+    // ▼ SLIDE TITLES — edit the text in quotes after  title:
     slides: [
-      { title: "The complex plane and holomorphic functions",  file: "files/complex-analysis/PresCA_1.pdf" },
-      { title: "Power series and analyticity",                 file: "files/complex-analysis/PresCA_2.pdf" },
-      { title: "Contour integration",                          file: "files/complex-analysis/PresCA_3.pdf" },
-      { title: "Cauchy's theorem",                             file: "files/complex-analysis/PresCA_4.pdf" },
-      { title: "Cauchy's integral formula",                    file: "files/complex-analysis/PresCA_5.pdf" },
-      { title: "Laurent series and singularities",             file: "files/complex-analysis/PresCA_6.pdf" },
-      { title: "The residue theorem",                          file: "files/complex-analysis/PresCA_7.pdf" },
-      { title: "The argument principle and Rouché's theorem",  file: "files/complex-analysis/PresCA_8.pdf" },
-      { title: "Conformal maps",                               file: "files/complex-analysis/PresCA_9.pdf" }
+      { title: "The complex plane and holomorphic functions", file: "files/complex-analysis/PresCA_1.pdf" },
+      { title: "Power series and analyticity",                file: "files/complex-analysis/PresCA_2.pdf" },
+      { title: "Contour integration",                         file: "files/complex-analysis/PresCA_3.pdf" },
+      { title: "Cauchy's theorem",                            file: "files/complex-analysis/PresCA_4.pdf" },
+      { title: "Cauchy's integral formula",                   file: "files/complex-analysis/PresCA_5.pdf" },
+      { title: "Laurent series and singularities",            file: "files/complex-analysis/PresCA_6.pdf" },
+      { title: "The residue theorem",                         file: "files/complex-analysis/PresCA_7.pdf" },
+      { title: "The argument principle and Rouché's theorem", file: "files/complex-analysis/PresCA_8.pdf" },
+      { title: "Conformal maps",                              file: "files/complex-analysis/PresCA_9.pdf" }
     ],
-    notes: [],
+
+    // ▼ LECTURE NOTES — placeholders. Rename the titles, upload the PDFs,
+    //   or delete any line you don't need.
+    notes: [
+      { title: "Notes 1", file: "files/complex-analysis/NotesCA_1.pdf" },
+      { title: "Notes 2", file: "files/complex-analysis/NotesCA_2.pdf" },
+      { title: "Notes 3", file: "files/complex-analysis/NotesCA_3.pdf" },
+      { title: "Notes 4", file: "files/complex-analysis/NotesCA_4.pdf" },
+      { title: "Notes 5", file: "files/complex-analysis/NotesCA_5.pdf" },
+      { title: "Notes 6", file: "files/complex-analysis/NotesCA_6.pdf" },
+      { title: "Notes 7", file: "files/complex-analysis/NotesCA_7.pdf" },
+      { title: "Notes 8", file: "files/complex-analysis/NotesCA_8.pdf" },
+      { title: "Notes 9", file: "files/complex-analysis/NotesCA_9.pdf" }
+    ],
+
+    // ▼ PROBLEM SHEETS — add one line per sheet once they exist, e.g.
+    //   { title: "Problem sheet 1", problems: "files/complex-analysis/SheetCA_1.pdf",
+    //     solutions: "files/complex-analysis/SolCA_1.pdf" },
+    //   Leave solutions: "" to show "Solutions to follow".
     sheets: []
   },
 
@@ -220,29 +242,33 @@ const COURSES = [
     color: "#26635f",
     term: "Autumn 2026",
     blurb: "Vector spaces, linear maps and the classification of operators, built from the axioms rather than from matrices.",
-    syllabus: "files/linear-algebra/syllabus.pdf",
+
+    syllabus: "files/linear-algebra/Syllabus_LA.pdf",
+
+    // ▼ SLIDE TITLES — edit the text in quotes after  title:
     slides: [
-      { title: "Vector spaces and subspaces",        file: "files/linear-algebra/slides-01.pdf" },
-      { title: "Linear maps, bases and dimension",   file: "files/linear-algebra/slides-02.pdf" },
-      { title: "Rank, nullity and change of basis",  file: "files/linear-algebra/slides-03.pdf" },
-      { title: "Determinants",                       file: "files/linear-algebra/slides-04.pdf" },
-      { title: "Eigenvalues and diagonalisation",    file: "files/linear-algebra/slides-05.pdf" },
-      { title: "Inner product spaces",               file: "files/linear-algebra/slides-06.pdf" },
-      { title: "The spectral theorem",               file: "files/linear-algebra/slides-07.pdf" },
-      { title: "Jordan normal form",                 file: "files/linear-algebra/slides-08.pdf" }
+      { title: "Vector spaces and linear maps",                 file: "files/linear-algebra/PresLA_1.pdf" },
+      { title: "Bases, dimension and rank",                     file: "files/linear-algebra/PresLA_2.pdf" },
+      { title: "Determinants",                                  file: "files/linear-algebra/PresLA_3.pdf" },
+      { title: "Eigenvalues and diagonalisation",               file: "files/linear-algebra/PresLA_4.pdf" },
+      { title: "Inner product spaces and the spectral theorem", file: "files/linear-algebra/PresLA_5.pdf" }
     ],
+
+    // ▼ LECTURE NOTES — placeholders. Rename the titles, upload the PDFs,
+    //   or delete any line you don't need.
     notes: [
-      { title: "Weeks 1–4: spaces and maps",          file: "files/linear-algebra/notes-01.pdf" },
-      { title: "Weeks 5–8: determinants and spectra", file: "files/linear-algebra/notes-02.pdf" },
-      { title: "Weeks 9–11: canonical forms",         file: "files/linear-algebra/notes-03.pdf" }
+      { title: "Notes 1", file: "files/linear-algebra/NotesLA_1.pdf" },
+      { title: "Notes 2", file: "files/linear-algebra/NotesLA_2.pdf" },
+      { title: "Notes 3", file: "files/linear-algebra/NotesLA_3.pdf" },
+      { title: "Notes 4", file: "files/linear-algebra/NotesLA_4.pdf" },
+      { title: "Notes 5", file: "files/linear-algebra/NotesLA_5.pdf" }
     ],
-    sheets: [
-      { title: "Problem sheet 1", problems: "files/linear-algebra/sheet-01.pdf", solutions: "files/linear-algebra/sheet-01-solutions.pdf" },
-      { title: "Problem sheet 2", problems: "files/linear-algebra/sheet-02.pdf", solutions: "files/linear-algebra/sheet-02-solutions.pdf" },
-      { title: "Problem sheet 3", problems: "files/linear-algebra/sheet-03.pdf", solutions: "files/linear-algebra/sheet-03-solutions.pdf" },
-      { title: "Problem sheet 4", problems: "files/linear-algebra/sheet-04.pdf", solutions: "" },
-      { title: "Problem sheet 5", problems: "files/linear-algebra/sheet-05.pdf", solutions: "" }
-    ]
+
+    // ▼ PROBLEM SHEETS — add one line per sheet once they exist, e.g.
+    //   { title: "Problem sheet 1", problems: "files/linear-algebra/SheetLA_1.pdf",
+    //     solutions: "files/linear-algebra/SolLA_1.pdf" },
+    //   Leave solutions: "" to show "Solutions to follow".
+    sheets: []
   },
 
   {
@@ -252,27 +278,33 @@ const COURSES = [
     color: "#a04426",
     term: "Spring 2026",
     blurb: "Completeness of the reals, limits, and a careful account of what differentiation and integration actually mean.",
-    syllabus: "files/real-analysis/syllabus.pdf",
+
+    syllabus: "files/real-analysis/Syllabus_RA.pdf",
+
+    // ▼ SLIDE TITLES — edit the text in quotes after  title:
     slides: [
-      { title: "The real numbers and completeness",  file: "files/real-analysis/slides-01.pdf" },
-      { title: "Sequences and limits",               file: "files/real-analysis/slides-02.pdf" },
-      { title: "Series and convergence tests",       file: "files/real-analysis/slides-03.pdf" },
-      { title: "Continuity",                         file: "files/real-analysis/slides-04.pdf" },
-      { title: "Differentiation and the mean value theorem", file: "files/real-analysis/slides-05.pdf" },
-      { title: "The Riemann integral",               file: "files/real-analysis/slides-06.pdf" },
-      { title: "Uniform convergence",                file: "files/real-analysis/slides-07.pdf" }
+      { title: "The real numbers and completeness",          file: "files/real-analysis/PresRA_1.pdf" },
+      { title: "Sequences and series",                       file: "files/real-analysis/PresRA_2.pdf" },
+      { title: "Continuity",                                 file: "files/real-analysis/PresRA_3.pdf" },
+      { title: "Differentiation and the mean value theorem", file: "files/real-analysis/PresRA_4.pdf" },
+      { title: "The Riemann integral",                       file: "files/real-analysis/PresRA_5.pdf" }
     ],
+
+    // ▼ LECTURE NOTES — placeholders. Rename the titles, upload the PDFs,
+    //   or delete any line you don't need.
     notes: [
-      { title: "Weeks 1–4: sequences and series",       file: "files/real-analysis/notes-01.pdf" },
-      { title: "Weeks 5–8: continuity and derivatives", file: "files/real-analysis/notes-02.pdf" },
-      { title: "Weeks 9–11: integration",               file: "files/real-analysis/notes-03.pdf" }
+      { title: "Notes 1", file: "files/real-analysis/NotesRA_1.pdf" },
+      { title: "Notes 2", file: "files/real-analysis/NotesRA_2.pdf" },
+      { title: "Notes 3", file: "files/real-analysis/NotesRA_3.pdf" },
+      { title: "Notes 4", file: "files/real-analysis/NotesRA_4.pdf" },
+      { title: "Notes 5", file: "files/real-analysis/NotesRA_5.pdf" }
     ],
-    sheets: [
-      { title: "Problem sheet 1", problems: "files/real-analysis/sheet-01.pdf", solutions: "files/real-analysis/sheet-01-solutions.pdf" },
-      { title: "Problem sheet 2", problems: "files/real-analysis/sheet-02.pdf", solutions: "files/real-analysis/sheet-02-solutions.pdf" },
-      { title: "Problem sheet 3", problems: "files/real-analysis/sheet-03.pdf", solutions: "files/real-analysis/sheet-03-solutions.pdf" },
-      { title: "Problem sheet 4", problems: "files/real-analysis/sheet-04.pdf", solutions: "files/real-analysis/sheet-04-solutions.pdf" }
-    ]
+
+    // ▼ PROBLEM SHEETS — add one line per sheet once they exist, e.g.
+    //   { title: "Problem sheet 1", problems: "files/real-analysis/SheetRA_1.pdf",
+    //     solutions: "files/real-analysis/SolRA_1.pdf" },
+    //   Leave solutions: "" to show "Solutions to follow".
+    sheets: []
   },
 
   {
@@ -282,25 +314,31 @@ const COURSES = [
     color: "#35548f",
     term: "Spring 2026",
     blurb: "Open sets as the minimal language for continuity, and what connectedness, compactness and separation buy you.",
-    syllabus: "files/general-topology/syllabus.pdf",
+
+    syllabus: "files/general-topology/Syllabus_GT.pdf",
+
+    // ▼ SLIDE TITLES — edit the text in quotes after  title:
     slides: [
-      { title: "Topological spaces and bases",              file: "files/general-topology/slides-01.pdf" },
-      { title: "Continuity and homeomorphism",              file: "files/general-topology/slides-02.pdf" },
-      { title: "Subspace, product and quotient topologies", file: "files/general-topology/slides-03.pdf" },
-      { title: "Connectedness",                             file: "files/general-topology/slides-04.pdf" },
-      { title: "Compactness",                               file: "files/general-topology/slides-05.pdf" },
-      { title: "Separation axioms",                         file: "files/general-topology/slides-06.pdf" },
-      { title: "Urysohn's lemma and metrisation",           file: "files/general-topology/slides-07.pdf" }
+      { title: "Topological spaces and continuity",         file: "files/general-topology/PresGT_1.pdf" },
+      { title: "Subspace, product and quotient topologies", file: "files/general-topology/PresGT_2.pdf" },
+      { title: "Connectedness and compactness",             file: "files/general-topology/PresGT_3.pdf" },
+      { title: "Separation axioms and metrisation",         file: "files/general-topology/PresGT_4.pdf" }
     ],
+
+    // ▼ LECTURE NOTES — placeholders. Rename the titles, upload the PDFs,
+    //   or delete any line you don't need.
     notes: [
-      { title: "Weeks 1–5: spaces, maps and constructions", file: "files/general-topology/notes-01.pdf" },
-      { title: "Weeks 6–10: compactness and separation",    file: "files/general-topology/notes-02.pdf" }
+      { title: "Notes 1", file: "files/general-topology/NotesGT_1.pdf" },
+      { title: "Notes 2", file: "files/general-topology/NotesGT_2.pdf" },
+      { title: "Notes 3", file: "files/general-topology/NotesGT_3.pdf" },
+      { title: "Notes 4", file: "files/general-topology/NotesGT_4.pdf" }
     ],
-    sheets: [
-      { title: "Problem sheet 1", problems: "files/general-topology/sheet-01.pdf", solutions: "files/general-topology/sheet-01-solutions.pdf" },
-      { title: "Problem sheet 2", problems: "files/general-topology/sheet-02.pdf", solutions: "files/general-topology/sheet-02-solutions.pdf" },
-      { title: "Problem sheet 3", problems: "files/general-topology/sheet-03.pdf", solutions: "" }
-    ]
+
+    // ▼ PROBLEM SHEETS — add one line per sheet once they exist, e.g.
+    //   { title: "Problem sheet 1", problems: "files/general-topology/SheetGT_1.pdf",
+    //     solutions: "files/general-topology/SolGT_1.pdf" },
+    //   Leave solutions: "" to show "Solutions to follow".
+    sheets: []
   },
 
   {
@@ -310,28 +348,27 @@ const COURSES = [
     color: "#7d6118",
     term: "Autumn 2026",
     blurb: "From Newton's laws to the variational principles that replace them, ending in Hamiltonian phase space.",
-    syllabus: "files/classical-mechanics/syllabus.pdf",
+
+    syllabus: "files/classical-mechanics/Syllabus_AM.pdf",
+
+    // ▼ SLIDE TITLES — edit the text in quotes after  title:
     slides: [
-      { title: "Newtonian mechanics and conservation laws", file: "files/classical-mechanics/slides-01.pdf" },
-      { title: "The calculus of variations",                file: "files/classical-mechanics/slides-02.pdf" },
-      { title: "Lagrangian mechanics and constraints",      file: "files/classical-mechanics/slides-03.pdf" },
-      { title: "Central forces and orbits",                 file: "files/classical-mechanics/slides-04.pdf" },
-      { title: "Rigid body motion",                         file: "files/classical-mechanics/slides-05.pdf" },
-      { title: "Hamiltonian mechanics",                     file: "files/classical-mechanics/slides-06.pdf" },
-      { title: "Canonical transformations",                 file: "files/classical-mechanics/slides-07.pdf" }
+      { title: "Newtonian mechanics and conservation laws", file: "files/classical-mechanics/PresAM_1.pdf" },
+      { title: "Lagrangian and Hamiltonian formulations",   file: "files/classical-mechanics/PresAM_2.pdf" }
     ],
+
+    // ▼ LECTURE NOTES — placeholders. Rename the titles, upload the PDFs,
+    //   or delete any line you don't need.
     notes: [
-      { title: "Weeks 1–4: Newton and variational principles", file: "files/classical-mechanics/notes-01.pdf" },
-      { title: "Weeks 5–8: Lagrangian mechanics",              file: "files/classical-mechanics/notes-02.pdf" },
-      { title: "Weeks 9–12: Hamiltonian mechanics",            file: "files/classical-mechanics/notes-03.pdf" }
+      { title: "Notes 1", file: "files/classical-mechanics/NotesAM_1.pdf" },
+      { title: "Notes 2", file: "files/classical-mechanics/NotesAM_2.pdf" }
     ],
-    sheets: [
-      { title: "Problem sheet 1", problems: "files/classical-mechanics/sheet-01.pdf", solutions: "files/classical-mechanics/sheet-01-solutions.pdf" },
-      { title: "Problem sheet 2", problems: "files/classical-mechanics/sheet-02.pdf", solutions: "files/classical-mechanics/sheet-02-solutions.pdf" },
-      { title: "Problem sheet 3", problems: "files/classical-mechanics/sheet-03.pdf", solutions: "files/classical-mechanics/sheet-03-solutions.pdf" },
-      { title: "Problem sheet 4", problems: "files/classical-mechanics/sheet-04.pdf", solutions: "" },
-      { title: "Problem sheet 5", problems: "files/classical-mechanics/sheet-05.pdf", solutions: "" }
-    ]
+
+    // ▼ PROBLEM SHEETS — add one line per sheet once they exist, e.g.
+    //   { title: "Problem sheet 1", problems: "files/classical-mechanics/SheetAM_1.pdf",
+    //     solutions: "files/classical-mechanics/SolAM_1.pdf" },
+    //   Leave solutions: "" to show "Solutions to follow".
+    sheets: []
   },
 
   {
@@ -341,29 +378,37 @@ const COURSES = [
     color: "#52642a",
     term: "Spring 2026",
     blurb: "Measure theory and the Lebesgue integral first, then Banach and Hilbert spaces and the operators acting on them.",
-    syllabus: "files/functional-analysis/syllabus.pdf",
+
+    syllabus: "files/functional-analysis/Syllabus_FA.pdf",
+
+    // ▼ SLIDE TITLES — edit the text in quotes after  title:
     slides: [
-      { title: "σ-algebras and measures",                 file: "files/functional-analysis/slides-01.pdf" },
-      { title: "The Lebesgue integral",                   file: "files/functional-analysis/slides-02.pdf" },
-      { title: "Convergence theorems",                    file: "files/functional-analysis/slides-03.pdf" },
-      { title: "Lᵖ spaces",                               file: "files/functional-analysis/slides-04.pdf" },
-      { title: "Banach spaces and the Hahn–Banach theorem", file: "files/functional-analysis/slides-05.pdf" },
-      { title: "Hilbert spaces and orthogonality",        file: "files/functional-analysis/slides-06.pdf" },
-      { title: "Bounded operators and the spectrum",      file: "files/functional-analysis/slides-07.pdf" },
-      { title: "Compact operators and the spectral theorem", file: "files/functional-analysis/slides-08.pdf" }
+      { title: "σ-algebras and measures",       file: "files/functional-analysis/PresFA_1.pdf" },
+      { title: "The Lebesgue integral",         file: "files/functional-analysis/PresFA_2.pdf" },
+      { title: "Convergence theorems",          file: "files/functional-analysis/PresFA_3.pdf" },
+      { title: "Lᵖ spaces",                     file: "files/functional-analysis/PresFA_4.pdf" },
+      { title: "Banach and Hilbert spaces",     file: "files/functional-analysis/PresFA_5.pdf" },
+      { title: "Bounded and compact operators", file: "files/functional-analysis/PresFA_6.pdf" }
     ],
+
+    // ▼ LECTURE NOTES — placeholders. Rename the titles, upload the PDFs,
+    //   or delete any line you don't need.
     notes: [
-      { title: "Part I: measure and integration", file: "files/functional-analysis/notes-01.pdf" },
-      { title: "Part II: normed and Hilbert spaces", file: "files/functional-analysis/notes-02.pdf" },
-      { title: "Part III: operator theory", file: "files/functional-analysis/notes-03.pdf" }
+      { title: "Notes 1", file: "files/functional-analysis/NotesFA_1.pdf" },
+      { title: "Notes 2", file: "files/functional-analysis/NotesFA_2.pdf" },
+      { title: "Notes 3", file: "files/functional-analysis/NotesFA_3.pdf" },
+      { title: "Notes 4", file: "files/functional-analysis/NotesFA_4.pdf" },
+      { title: "Notes 5", file: "files/functional-analysis/NotesFA_5.pdf" },
+      { title: "Notes 6", file: "files/functional-analysis/NotesFA_6.pdf" }
     ],
-    sheets: [
-      { title: "Problem sheet 1", problems: "files/functional-analysis/sheet-01.pdf", solutions: "files/functional-analysis/sheet-01-solutions.pdf" },
-      { title: "Problem sheet 2", problems: "files/functional-analysis/sheet-02.pdf", solutions: "files/functional-analysis/sheet-02-solutions.pdf" },
-      { title: "Problem sheet 3", problems: "files/functional-analysis/sheet-03.pdf", solutions: "" },
-      { title: "Problem sheet 4", problems: "files/functional-analysis/sheet-04.pdf", solutions: "" }
-    ]
+
+    // ▼ PROBLEM SHEETS — add one line per sheet once they exist, e.g.
+    //   { title: "Problem sheet 1", problems: "files/functional-analysis/SheetFA_1.pdf",
+    //     solutions: "files/functional-analysis/SolFA_1.pdf" },
+    //   Leave solutions: "" to show "Solutions to follow".
+    sheets: []
   }
+
 ];
 
 /* ==========================================================================
