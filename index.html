@@ -50,9 +50,9 @@ a{color:inherit}
   letter-spacing:-.015em;margin:0 0 .6rem;
 }
 .masthead p{max-width:54ch;margin:0;color:var(--ink-soft);font-size:1.0625rem}
-.byline{
+.masthead .byline{
   font:400 1.0625rem/1.4 var(--serif);font-style:italic;
-  color:var(--ink-soft);margin:0 0 1.1rem;
+  color:var(--ink-soft);margin:0 0 0.7rem;
 }
 
 /* ============================================================
@@ -202,7 +202,7 @@ const COURSES = [
     mark: "contour",
     color: "#6e4b8e",
     term: "Autumn 2026",
-    blurb: "Complex numbers, complex functions, complex differentiability, complex integration and residue theory.",
+    blurb: "We begin the course with a quick insight into the formal construction (via Cauchy Sequences) of the real numbers, then we define the complex numbers and study their geometrical representation, the so-called Argand's diagram, in order to do so we use the tools metric topology. The next big chapters dig into the formal treatment of the essential concepts of calculus: derivatives and integrals, comparing each theorem and property with their real counterpart. I took the unconventional approach to construct the exponential function from scratch using sequences and series to solve an important differential equation.",
 
     syllabus: "files/complex-analysis/Syllabus_CA.pdf",
 
@@ -259,7 +259,7 @@ const COURSES = [
     mark: "span",
     color: "#26635f",
     term: "Autumn 2026",
-    blurb: "Linear spaces, linear maps and the study of the spectral decomposition of operators in finite-dimensional spaces. I differ from the usual approach by introducing matrices as a representation of operators rather than the basic ingredient of linear algebra.",
+    blurb: "This course is about linear spaces, linear maps and the study of the spectral decomposition of operators in finite-dimensional spaces. I differ from the usual approach by introducing matrices as a representation of operators rather than the basic ingredient of linear algebra.",
 
     syllabus: "files/linear-algebra/Syllabus_LA.pdf",
 
@@ -295,7 +295,7 @@ const COURSES = [
     mark: "epsilon",
     color: "#a04426",
     term: "Spring 2026",
-    blurb: "Formal properties of real functions, limits, derivatives and integrals. I also provide a detail treatment of sequences and series, which are essential in nearly every area of applied mathematics.",
+    blurb: "In this course we develop and study the formal properties of real functions, limits, derivatives and integrals. I also provide a detail treatment of sequences and series, which are essential in nearly every area of applied mathematics.",
 
     syllabus: "files/real-analysis/Syllabus_RA.pdf",
 
@@ -365,7 +365,7 @@ const COURSES = [
     mark: "pendulum",
     color: "#7d6118",
     term: "Autumn 2026",
-    blurb: "Beginning with a quick recap on Newtonian mechanics, I develop the Lagrangian and Hamiltonian formulations of classical mechanics as stronger, albeit less general approaches to the study of the dynamics of a system. I differ from the usual approaches by not mentioning the obscure concept of virtual work and virtual displacements, always aiming to the highest mathematical rigor so students can clearly appreciate the limitations of the theory and the advantages of encoding the information of a dynamical system in a scalar function, e.g. the Lagrangian or the Hamiltonian.",
+    blurb: "The aim of this course is to reformulate the laws of dynamics in such a way that forces of constraints are no longer needed to find the equations of motion. We start with a quick recap on Newtonian mechanics, I develop the Lagrangian and Hamiltonian formulations of classical mechanics as stronger, albeit less general approaches to the study of the dynamics of a system. I differ from the usual approaches by not mentioning the obscure concept of virtual work and virtual displacements, always aiming to the highest mathematical rigour, so students can clearly appreciate the limitations of the theory and the advantages of encoding the information of a dynamical system in a scalar function, e.g. the Lagrangian or the Hamiltonian.",
 
     syllabus: "files/classical-mechanics/Syllabus_AM.pdf",
 
@@ -377,10 +377,6 @@ const COURSES = [
 
     // ▼ LECTURE NOTES — placeholders. Rename the titles, upload the PDFs,
     //   or delete any line you don't need.
-    notes: [
-      { title: "Notes 1", file: "files/classical-mechanics/NotesAM_1.pdf" },
-      { title: "Notes 2", file: "files/classical-mechanics/NotesAM_2.pdf" }
-    ],
 
     // ▼ PROBLEM SHEETS — add one line per sheet once they exist, e.g.
     //   { title: "Problem sheet 1", problems: "files/classical-mechanics/SheetAM_1.pdf",
@@ -395,7 +391,7 @@ const COURSES = [
     mark: "measure",
     color: "#52642a",
     term: "Spring 2026",
-    blurb: "This course starts presenting the essentials of measure theory, using what Terence Tao calls the measure problem, as the key motivation. Once the idea of a measure space is developed we start defining the abstract Lebesgue integration with respect to measures and thus construct the so-called Lebesgue spaces Lᵖ as the primary examples of infinite-dimensional linear spaces, with special attention to the case where p equals 2. Next, we move on to an extension to infinie-dimensions of the usual concepts of linear algebra for linear spaces and thus develop the theory of Banach and Hilbert spaces conckuding with the treatment of operators on Hilbert spaces.",
+    blurb: "Beginning with the essentials of measure theory, using what Terence Tao calls the measure problem as the key motivation, we construct the mathematical formalism behind measuring, an idea that Riemann used to give the first formal definition of an integral. Once the idea of a measure space is developed we start defining the abstract Lebesgue integration with respect to measures and thus construct the so-called Lebesgue spaces Lᵖ as the primary examples of infinite-dimensional linear spaces, with special attention to the case where p equals 2. Next, we move on to an extension to infinie-dimensions of the usual concepts of linear algebra for linear spaces and thus develop the theory of Banach and Hilbert spaces conckuding with the treatment of operators on Hilbert spaces.",
 
     syllabus: "files/functional-analysis/Syllabus_FA.pdf",
 
