@@ -180,6 +180,12 @@ footer a{color:var(--ink-soft)}
      • slidesAll: "path.pdf"  adds an optional "all in a single file" link
        under the slides. Delete the line if you don't have one.
      • Delete a whole course by deleting its { ... } block.
+
+   Problem sheets accept either shape:
+       { title: "Problem sheet 1", problems: "…/SheetCA_1.pdf",
+         solutions: "…/SolCA_1.pdf" }   → two buttons
+       { title: "Solution 1", file: "…/Sheet1_CA_Solution.pdf" }
+                                        → one "Open PDF" button
    ========================================================================== */
 
 const SITE = {
@@ -453,6 +459,13 @@ const esc = s => String(s).replace(/[&<>"']/g, c =>
 const app = document.getElementById("app");
 const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
+/* A real link to a PDF, or a dashed placeholder when the path is missing. */
+function fileBtn(path, label, pendingLabel){
+  return path
+    ? `<a class="btn" href="${esc(path)}" target="_blank" rel="noopener">${esc(label)}</a>`
+    : `<span class="btn pending" aria-disabled="true">${esc(pendingLabel)}</span>`;
+}
+
 /* --- home --------------------------------------------------------------- */
 function renderHome(){
   document.title = SITE.title;
@@ -486,28 +499,47 @@ function renderHome(){
 /* --- course ------------------------------------------------------------- */
 function docList(items, emptyMsg){
   if(!items || !items.length) return `<div class="sheet"><p class="empty">${esc(emptyMsg)}</p></div>`;
-  const rows = items.map((it, i) => `
+  const rows = items.map((it, i) => {
+    const path = it.file || "";
+    const name = path
+      ? `<a class="name" href="${esc(path)}" target="_blank" rel="noopener">${esc(it.title)}</a>`
+      : `<span class="name">${esc(it.title)}</span>`;
+    return `
     <li class="row">
       <span class="n">${i + 1}</span>
-      <a class="name" href="${esc(it.file)}" target="_blank" rel="noopener">${esc(it.title)}</a>
-      <span class="actions"><span class="btn">Open PDF</span></span>
-    </li>`).join("");
+      ${name}
+      <span class="actions">${fileBtn(path, "Open PDF", "To follow")}</span>
+    </li>`;
+  }).join("");
   return `<ul class="rows sheet">${rows}</ul>`;
 }
 
 function sheetList(items){
   if(!items || !items.length) return `<div class="sheet"><p class="empty">The first problem sheet will appear here once we have covered enough ground.</p></div>`;
-  const rows = items.map((s, i) => `
+  const rows = items.map((s, i) => {
+    const problems  = s.problems  || "";
+    const solutions = s.solutions || "";
+    const single    = (!problems && !solutions) ? (s.file || "") : "";
+
+    // One button when the entry is a single PDF, two when it is a
+    // problems/solutions pair.
+    const actions = single
+      ? fileBtn(single, "Open PDF", "To follow")
+      : fileBtn(problems, "Problems", "Problems to follow") +
+        fileBtn(solutions, "Solutions", "Solutions to follow");
+
+    const link = single || problems;
+    const name = link
+      ? `<a class="name" href="${esc(link)}" target="_blank" rel="noopener">${esc(s.title)}</a>`
+      : `<span class="name">${esc(s.title)}</span>`;
+
+    return `
     <li class="row">
       <span class="n">${i + 1}</span>
-      <span class="name">${esc(s.title)}</span>
-      <span class="actions">
-        <a class="btn" href="${esc(s.problems)}" target="_blank" rel="noopener">Problems</a>
-        ${s.solutions
-          ? `<a class="btn" href="${esc(s.solutions)}" target="_blank" rel="noopener">Solutions</a>`
-          : `<span class="btn pending" aria-disabled="true">Solutions to follow</span>`}
-      </span>
-    </li>`).join("");
+      ${name}
+      <span class="actions">${actions}</span>
+    </li>`;
+  }).join("");
   return `<ul class="rows sheet">${rows}</ul>`;
 }
 
