@@ -134,6 +134,9 @@ section.block{margin:0 0 1.75rem}
 }
 
 .empty{padding:1rem 1.25rem;color:var(--ink-faint);font-size:.9375rem}
+.bundle{margin:.65rem 0 0;font-size:.875rem}
+.bundle a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+.bundle a:hover{background:color-mix(in srgb,var(--accent) 9%,#fff)}
 
 /* Mark drawing animation, played once when a course opens */
 .draw .stroke{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw .9s ease forwards}
@@ -170,13 +173,18 @@ footer a{color:var(--ink-soft)}
 
    Rules of thumb:
      • Every "file:" value is just the path to the PDF, relative to this page.
-     • Order in the list = order on the page.
+     • Order in the list = order on the page. The numbers 1,2,3 come from
+       position, not from the filename, so moving a line renumbers everything.
+     • syllabus: ""  shows "will be posted here" instead of a broken link.
+     • notes: []  or  sheets: []  leaves that section with a waiting message.
+     • slidesAll: "path.pdf"  adds an optional "all in a single file" link
+       under the slides. Delete the line if you don't have one.
      • Delete a whole course by deleting its { ... } block.
    ========================================================================== */
 
 const SITE = {
   title: "Course materials",
-  lecturer: "Your name here",
+  lecturer: "Ronny Morales Carmona",
   intro: "Syllabi, lecture slides, handwritten notes, problem sheets and worked solutions for the courses I teach. Everything is a PDF and free to download."
 };
 
@@ -188,27 +196,21 @@ const COURSES = [
     color: "#6e4b8e",
     term: "Autumn 2026",
     blurb: "Holomorphic functions, contour integration, and the surprisingly rigid consequences of complex differentiability.",
-    syllabus: "files/complex-analysis/syllabus.pdf",
+    syllabus: "",
+    slidesAll: "files/complex-analysis/PresCA_all.pdf",
     slides: [
-      { title: "The complex plane and holomorphic functions", file: "files/complex-analysis/slides-01.pdf" },
-      { title: "Power series and analyticity",                file: "files/complex-analysis/slides-02.pdf" },
-      { title: "Contour integration and Cauchy's theorem",    file: "files/complex-analysis/slides-03.pdf" },
-      { title: "Cauchy's integral formula",                   file: "files/complex-analysis/slides-04.pdf" },
-      { title: "Laurent series and singularities",            file: "files/complex-analysis/slides-05.pdf" },
-      { title: "The residue theorem",                         file: "files/complex-analysis/slides-06.pdf" },
-      { title: "Conformal maps",                              file: "files/complex-analysis/slides-07.pdf" }
+      { title: "The complex plane and holomorphic functions",  file: "files/complex-analysis/PresCA_1.pdf" },
+      { title: "Power series and analyticity",                 file: "files/complex-analysis/PresCA_2.pdf" },
+      { title: "Contour integration",                          file: "files/complex-analysis/PresCA_3.pdf" },
+      { title: "Cauchy's theorem",                             file: "files/complex-analysis/PresCA_4.pdf" },
+      { title: "Cauchy's integral formula",                    file: "files/complex-analysis/PresCA_5.pdf" },
+      { title: "Laurent series and singularities",             file: "files/complex-analysis/PresCA_6.pdf" },
+      { title: "The residue theorem",                          file: "files/complex-analysis/PresCA_7.pdf" },
+      { title: "The argument principle and Rouché's theorem",  file: "files/complex-analysis/PresCA_8.pdf" },
+      { title: "Conformal maps",                               file: "files/complex-analysis/PresCA_9.pdf" }
     ],
-    notes: [
-      { title: "Weeks 1–3: analyticity and power series", file: "files/complex-analysis/notes-01.pdf" },
-      { title: "Weeks 4–6: Cauchy theory",                file: "files/complex-analysis/notes-02.pdf" },
-      { title: "Weeks 7–10: residues and conformal maps", file: "files/complex-analysis/notes-03.pdf" }
-    ],
-    sheets: [
-      { title: "Problem sheet 1", problems: "files/complex-analysis/sheet-01.pdf", solutions: "files/complex-analysis/sheet-01-solutions.pdf" },
-      { title: "Problem sheet 2", problems: "files/complex-analysis/sheet-02.pdf", solutions: "files/complex-analysis/sheet-02-solutions.pdf" },
-      { title: "Problem sheet 3", problems: "files/complex-analysis/sheet-03.pdf", solutions: "" },
-      { title: "Problem sheet 4", problems: "files/complex-analysis/sheet-04.pdf", solutions: "" }
-    ]
+    notes: [],
+    sheets: []
   },
 
   {
@@ -479,16 +481,19 @@ function renderCourse(c){
 
     <section class="block">
       <h3>Syllabus</h3>
-      <a class="syllabus" href="${esc(c.syllabus)}" target="_blank" rel="noopener">
+      ${c.syllabus ? `<a class="syllabus" href="${esc(c.syllabus)}" target="_blank" rel="noopener">
         <span><strong>What this course covers</strong>
         <span>Topics, prerequisites, assessment and reading.</span></span>
         <span class="go">Open PDF</span>
-      </a>
+      </a>` : `<div class="sheet"><p class="empty">The syllabus will be posted here before the course begins.</p></div>`}
     </section>
 
     <section class="block">
       <h3>Slides <span class="tally">${plural(c.slides.length, "deck")}</span></h3>
       ${docList(c.slides, "Slides will be posted as the course runs.")}
+      ${c.slidesAll && c.slides.length
+        ? `<p class="bundle"><a href="${esc(c.slidesAll)}" target="_blank" rel="noopener">All ${c.slides.length} in a single file</a></p>`
+        : ""}
     </section>
 
     <section class="block">
