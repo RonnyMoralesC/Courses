@@ -181,11 +181,11 @@ footer a{color:var(--ink-soft)}
        under the slides. Delete the line if you don't have one.
      • Delete a whole course by deleting its { ... } block.
 
-   Problem sheets accept either shape:
-       { title: "Problem sheet 1", problems: "…/SheetCA_1.pdf",
-         solutions: "…/SolCA_1.pdf" }   → two buttons
-       { title: "Solution 1", file: "…/Sheet1_CA_Solution.pdf" }
-                                        → one "Open PDF" button
+   Every problem sheet row has two buttons, "Problem" and "Solution":
+       { title: "Problem sheet 1",
+         problems:  "…/Sheet1_CA.pdf",
+         solutions: "…/Sheet1_CA_Solution.pdf" }
+   Leave solutions: "" and the second button reads "Solution coming soon".
    ========================================================================== */
 
 const SITE = {
@@ -235,11 +235,21 @@ const COURSES = [
     //   { title: "Problem sheet 1", problems: "files/complex-analysis/SheetCA_1.pdf",
     //     solutions: "files/complex-analysis/SolCA_1.pdf" },
     //   Leave solutions: "" to show "Solutions to follow".
+    //   ⚠ The "problems:" filenames below are a guess (Sheet1_CA.pdf, …).
+    //   Change them to the real names of your plain problem sheets.
     sheets: [
-      { title: "Solution 1", file: "files/complex-analysis/Sheet1_CA_Solution.pdf" },
-      { title: "Solution 2", file: "files/complex-analysis/Sheet2_CA_Solution.pdf" },
-      { title: "Solution 3", file: "files/complex-analysis/Sheet3_CA_Solution.pdf" },
-      { title: "Solution 4", file: "files/complex-analysis/Sheet4_CA_Solution.pdf" }
+      { title: "Problem sheet 1",
+        problems:  "files/complex-analysis/Sheet1_CA.pdf",
+        solutions: "files/complex-analysis/Sheet1_CA_Solution.pdf" },
+      { title: "Problem sheet 2",
+        problems:  "files/complex-analysis/Sheet2_CA.pdf",
+        solutions: "files/complex-analysis/Sheet2_CA_Solution.pdf" },
+      { title: "Problem sheet 3",
+        problems:  "files/complex-analysis/Sheet3_CA.pdf",
+        solutions: "files/complex-analysis/Sheet3_CA_Solution.pdf" },
+      { title: "Problem sheet 4",
+        problems:  "files/complex-analysis/Sheet4_CA.pdf",
+        solutions: "files/complex-analysis/Sheet4_CA_Solution.pdf" }
     ]
   },
 
@@ -517,27 +527,22 @@ function docList(items, emptyMsg){
 function sheetList(items){
   if(!items || !items.length) return `<div class="sheet"><p class="empty">The first problem sheet will appear here once we have covered enough ground.</p></div>`;
   const rows = items.map((s, i) => {
-    const problems  = s.problems  || "";
+    // "file:" is still understood, and counts as the problem sheet.
+    const problems  = s.problems || s.file || "";
     const solutions = s.solutions || "";
-    const single    = (!problems && !solutions) ? (s.file || "") : "";
 
-    // One button when the entry is a single PDF, two when it is a
-    // problems/solutions pair.
-    const actions = single
-      ? fileBtn(single, "Open PDF", "To follow")
-      : fileBtn(problems, "Problems", "Problems to follow") +
-        fileBtn(solutions, "Solutions", "Solutions to follow");
-
-    const link = single || problems;
-    const name = link
-      ? `<a class="name" href="${esc(link)}" target="_blank" rel="noopener">${esc(s.title)}</a>`
+    const name = problems
+      ? `<a class="name" href="${esc(problems)}" target="_blank" rel="noopener">${esc(s.title)}</a>`
       : `<span class="name">${esc(s.title)}</span>`;
 
     return `
     <li class="row">
       <span class="n">${i + 1}</span>
       ${name}
-      <span class="actions">${actions}</span>
+      <span class="actions">
+        ${fileBtn(problems, "Problem", "Problem coming soon")}
+        ${fileBtn(solutions, "Solution", "Solution coming soon")}
+      </span>
     </li>`;
   }).join("");
   return `<ul class="rows sheet">${rows}</ul>`;
