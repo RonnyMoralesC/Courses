@@ -58,6 +58,14 @@ a{color:inherit}
 /* ============================================================
    Course grid (home)
    ============================================================ */
+.course-section{margin:0 0 2.5rem}
+.section-title{
+  font:400 1.5rem/1.2 var(--serif);
+  margin:0 0 1.15rem;
+  padding-bottom:.4rem;
+  border-bottom:1px solid var(--line-firm);
+  letter-spacing:-.01em;
+}
 .grid{display:grid;gap:clamp(.9rem,2vw,1.15rem);grid-template-columns:repeat(auto-fill,minmax(21rem,1fr));margin:0;padding:0;list-style:none}
 .sheet{
   background:var(--sheet);border:1px solid var(--line);border-radius:2px;
@@ -360,12 +368,16 @@ const COURSES = [
     //   { title: "Problem sheet 1", problems: "files/general-topology/SheetGT_1.pdf",
     //     solutions: "files/general-topology/SolGT_1.pdf" },
     //   Leave solutions: "" to show "Solutions to follow".
-    sheets: []
+    sheets: [
+       { title: "Problem sheet 1",
+        problems:  "files/general-topology/Sheet1_GT.pdf",
+        solutions: "files/general-topology/Sheet1_GT_Solution.pdf" }
+    ]
   },
 
   {
     id: "classical-mechanics",
-    title: "Classical Mechanics",
+    title: "Analytical Mechanics",
     mark: "pendulum",
     color: "#7d6118",
     term: "Autumn 2026",
@@ -386,7 +398,11 @@ const COURSES = [
     //   { title: "Problem sheet 1", problems: "files/classical-mechanics/SheetAM_1.pdf",
     //     solutions: "files/classical-mechanics/SolAM_1.pdf" },
     //   Leave solutions: "" to show "Solutions to follow".
-    sheets: []
+    sheets: [
+       { title: "Problem sheet 1",
+        problems:  "files/classical-mechanics/Sheet1_AM.pdf",
+        solutions: "files/classical-mechanics/Sheet1_AM_Solution.pdf" }
+    ]
   },
 
   {
@@ -424,6 +440,21 @@ const COURSES = [
     //   { title: "Problem sheet 1", problems: "files/functional-analysis/SheetFA_1.pdf",
     //     solutions: "files/functional-analysis/SolFA_1.pdf" },
     //   Leave solutions: "" to show "Solutions to follow".
+    sheets: []
+  },
+
+  {
+    id: "differential-geometry",
+    title: "Differential Geometry",
+    mark: "torus",
+    color: "#8c3b58",
+    term: "Spring 2027",
+    blurb: "An introduction to smooth manifolds, vector fields, differential forms, and Riemannian metrics. We explore the intrinsic geometry of curves and surfaces, leading to the Gauss-Bonnet theorem and connections to modern theoretical physics.",
+
+    syllabus: "",
+
+    slides: [],
+    notes: [],
     sheets: []
   }
 
@@ -477,11 +508,14 @@ function fileBtn(path, label, pendingLabel){
 }
 
 /* --- home --------------------------------------------------------------- */
-function renderHome(){
-  document.title = SITE.title;
-  document.documentElement.style.setProperty("--accent", "var(--ink)");
+function renderCard(c){
+  const slideCount = (c.slides || []).length;
+  const sheetCount = (c.sheets || []).length;
+  const countHtml = (slideCount > 0 || sheetCount > 0)
+    ? `<p class="card-count">${plural(slideCount, "slide")}, ${plural(sheetCount, "problem sheet")}</p>`
+    : "";
 
-  const cards = COURSES.map(c => `
+  return `
     <li class="sheet" style="--accent:${esc(c.color)}">
       <a class="card" href="#/${esc(c.id)}">
         <div class="card-head">
@@ -492,9 +526,28 @@ function renderHome(){
           ${markSvg(c.mark, 40, "mark")}
         </div>
         <p class="card-blurb">${esc(c.blurb)}</p>
-        <p class="card-count">${plural(c.slides.length, "slide")}, ${plural(c.sheets.length, "problem sheet")}</p>
+        ${countHtml}
       </a>
-    </li>`).join("");
+    </li>`;
+}
+
+function renderSection(title, courses){
+  if(!courses || !courses.length) return "";
+  const cards = courses.map(renderCard).join("");
+  return `
+    <section class="course-section">
+      <h2 class="section-title">${esc(title)}</h2>
+      <ul class="grid">${cards}</ul>
+    </section>`;
+}
+
+function renderHome(){
+  document.title = SITE.title;
+  document.documentElement.style.setProperty("--accent", "var(--ink)");
+
+  const active = COURSES.filter(c => c.term && c.term.includes("Autumn 2026"));
+  const upcoming = COURSES.filter(c => c.term && (c.term.includes("2027") || c.term.toLowerCase().includes("upcoming")));
+  const past = COURSES.filter(c => c.term && !c.term.includes("Autumn 2026") && !c.term.includes("2027") && !c.term.toLowerCase().includes("upcoming"));
 
   app.innerHTML = `
     <header class="masthead">
@@ -502,7 +555,9 @@ function renderHome(){
       <h1>${esc(SITE.title)}</h1>
       <p>${esc(SITE.intro)}</p>
     </header>
-    <ul class="grid">${cards}</ul>
+    ${renderSection("Active Courses", active)}
+    ${renderSection("Upcoming Courses", upcoming)}
+    ${renderSection("Past Courses", past)}
     <footer><p>Materials are provided for the students on these courses. Corrections are welcome.</p></footer>`;
 }
 
