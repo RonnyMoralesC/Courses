@@ -446,7 +446,7 @@ const COURSES = [
   {
     id: "mathematical-methods",
     title: "Mathematical Methods of Quantum Mechanics",
-    mark: "h_psi",
+    mark: "psi_wave",
     color: "#4a3b8c",
     term: "Spring 2027",
     blurb: "In this course we will study a series of branches in mathematics such as meaure theory, spectral theory, distribution theory, and special functions, developing the mathematical methods frequently used in quantum mechanics.",
@@ -486,10 +486,8 @@ const MARKS = {
   measure: `<path class="stroke" d="M6 40h36" opacity=".4"/>
             <path class="stroke" d="M6 40V27h8V17h8v14h8V11h8v11h4"/>
             <path class="stroke" d="M6 22h36" stroke-dasharray="3 3" opacity=".55"/>`,
-   h_psi: `<path class="stroke" d="M 6 16 v 16 M 6 24 h 8 M 14 16 v 16"/>
-          <path class="stroke" d="M 21 12 v 24"/>
-          <path class="stroke" d="M 29 12 v 24 M 24 18 c 0 9 10 9 10 0"/>
-          <path class="stroke" d="M 38 14 l 5 10 -5 10"/>`
+  psi_wave: `<path class="stroke" d="M24 7v33M18 40h12M13 17c0 13 22 13 22 0"/>
+           <path class="stroke" d="M6 24c3-6 6-6 9 0s6 6 9 0 6-6 9 0 6 6 9 0" stroke-dasharray="2.5 2.5" opacity=".5"/>`
 };
 
 function markSvg(name, size, cls){
