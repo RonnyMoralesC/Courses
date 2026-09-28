@@ -440,7 +440,7 @@ const COURSES = [
   {
     id: "mathematical-methods",
     title: "Mathematical Methods of Quantum Mechanics",
-    mark: "psi_wave",
+    mark: "cat",
     color: "#4a3b8c",
     term: "Spring 2027",
     blurb: "In this course we will study a series of branches in mathematics such as meaure theory, spectral theory, distribution theory, and special functions, developing the mathematical methods frequently used in quantum mechanics.",
@@ -480,8 +480,8 @@ const MARKS = {
   measure: `<path class="stroke" d="M6 40h36" opacity=".4"/>
             <path class="stroke" d="M6 40V27h8V17h8v14h8V11h8v11h4"/>
             <path class="stroke" d="M6 22h36" stroke-dasharray="3 3" opacity=".55"/>`,
-  psi_wave: `<path class="stroke" d="M24 7v33M18 40h12M13 17c0 13 22 13 22 0"/>
-           <path class="stroke" d="M6 24c3-6 6-6 9 0s6 6 9 0 6-6 9 0 6 6 9 0" stroke-dasharray="2.5 2.5" opacity=".5"/>`
+  cat:     `<path class="pop" transform="translate(-2.8 3.8) scale(.105)" fill="#1b2a5c" stroke="none"
+            d="M53 120C55 110 65 100 78 95L94 89L99 69L110 84L114 82L119 64C126 76 131 90 132 104C140 120 152 135 170 145C220 152 330 150 395 150C405 120 415 85 412 55C410 35 395 25 385 22C375 20 372 10 380 6C392 2 410 10 422 22C438 40 442 70 438 100C435 125 430 145 428 162C440 185 440 215 438 240C440 270 450 300 452 330C455 345 458 360 457 372C455 380 430 380 420 375C418 368 425 362 430 358L425 320C418 300 410 285 400 275C380 272 365 270 355 272C358 300 350 330 340 350C335 362 330 370 320 374L290 376C280 376 278 368 288 362C300 355 312 345 318 330C322 315 318 295 312 280C290 272 270 268 255 268C250 290 245 320 245 345C247 352 252 356 250 360C240 362 228 358 225 352C222 335 215 305 205 285C200 275 195 270 190 270C185 300 175 330 160 350C150 362 150 372 140 376L105 378C97 377 97 368 108 364C120 358 130 345 138 325C145 300 138 240 130 210C125 190 118 175 110 165C100 155 90 148 80 145C70 142 60 135 53 120Z"/>`
 };
 
 function markSvg(name, size, cls){
