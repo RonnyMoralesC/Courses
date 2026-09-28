@@ -1,0 +1,136 @@
+\documentclass[11pt]{report} % Document type and initial letter size
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsfonts, amssymb, amsthm, mathrsfs, bbding} % Required for the math symbols
+\usepackage{amsmath} % [fleqn] is used to flushleft every equation
+\usepackage{changepage} % Required to change the format mid document
+\usepackage{stackengine} % Required to use the = with a ! on top symbol
+\usepackage[letterpaper, total={6in, 8in}]{geometry} % Required to customize the whole document structure (margins, size)
+\usepackage{nccmath} % Required to center equations once using the [felqn] option
+\usepackage{parskip} % Required to use clean line breaks
+\usepackage{xcolor} % Required to use \textcolor
+\usepackage{titlesec}
+\usepackage[many]{tcolorbox} % Required to use the color box commands
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows}
+%%%%%%%%%%%%%%%%%%%%%%%%%% MARGINS AND SIZE DEFINITIONS
+ \geometry{
+ a4paper,
+ total={595pt,257mm},
+ left=15mm,
+ right=15mm,
+ top=25mm,
+ }
+ %%%%%%%%%%%%%%%%%%%%%%%%%%% COMMANDS
+ \newcommand{\R}{\mathbb{R}}
+ \renewcommand{\r}{\mathbf{r}}
+ \renewcommand{\a}{\mathbf{a}}
+ \newcommand{\e}{\mathbf{e}}
+ \newcommand{\g}{\mathbf{g}}
+ \renewcommand{\b}{\mathbf{b}}
+ \renewcommand{\c}{\mathbf{c}}
+ \renewcommand{\k}{\mathbf{k}}
+ \newcommand{\A}{\mathbf{A}}
+ \newcommand{\F}{\mathbf{F}}
+ \newcommand{\B}{\mathbf{B}}
+ \newcommand{\cyl}{\rho,\phi,z}
+ \newcommand{\lag}{\mathcal{L}}
+ \renewcommand{\div}{\nabla\cdot}
+ \newcommand{\intv}{\int_V dV\:}
+ \newcommand{\oints}{\oint_S dS\:\hat{\mathbf{n}}\cdot}
+ \renewcommand{\L}[1]{\div\left(p#1\right)+q#1}
+ \newcommand{\lap}{\nabla^2}
+ \newcommand{\rd}{|\r-\r'|}
+ \newcommand{\x}{\mathbf{x}}
+ \newcommand{\vlaplacian}{\vec{\Delta}}
+ \newcommand{\laplacian}{\Delta}
+ \newcommand{\curl}{\nabla\times}
+ \newcommand{\dev}{\rotatebox[origin=c]{180}{\FiveStarLines}}
+ \newcommand{\mapphi}[2]{\frac{\Gamma(#1)}{\Gamma(#2)\Gamma(#1-#2)}}
+ \newcommand{\mapphid}[2]{\frac{\Gamma(#1)}{\Gamma(#2)\Gamma(#1-(#2))}}
+ \newcommand{\mapphig}[3]{\frac{\Gamma(#1)}{\Gamma(#2)\Gamma(#3)}}
+ \newcommand{\prob}[1]{\begin{problem}{}{}\textsf{#1}\end{problem}}
+ \newcommand{\sol}[1]{\begin{solution}{}{}\textsf{#1} \hfill \vspace{-15pt}\\ \begin{flushright} \dev \end{flushright}\end{solution}}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Colors
+ \definecolor{navy}{RGB}{25,31,47} % Navy
+ \definecolor{purple}{RGB}{105,80,120} % Purple
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Environments
+ \renewenvironment{proof}[1][Proof. ]{\textit{#1}}{\hfill$\blacksquare$\\}
+ \newcommand{\eqn}[1]{\begin{equation*} #1
+    \end{equation*}}
+\newcommand{\eqntag}[3]{\begin{equation} #1 \tag{#2} \label{#3}
+    \end{equation}}
+\newcommand{\eqnal}[1]{\begin{align*} #1
+    \end{align*}}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Problem box settings
+ \newtcbtheorem[]{problem}{\vspace{5pt} Problem}%
+    {enhanced,
+    colback = black!3, %white,
+    colbacktitle = black!3,
+    coltitle = navy,
+    boxrule = 0pt,
+    top=0pt,
+    boxsep=4pt,
+    frame hidden,
+    borderline west = {1mm}{0mm}{navy},
+    fonttitle = \bfseries\sffamily,
+    breakable,
+    before skip = 3ex,
+    after skip = 3ex
+}{problem}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Solution box settings
+\newtcbtheorem[]{solution}{\vspace{5pt} Solution}%
+    {enhanced,
+    colback = black!3, %white,
+    colbacktitle = black!3,
+    coltitle = purple,
+    boxrule = 0pt,
+    top=0pt,
+    boxsep=4pt,
+    frame hidden,
+    borderline west = {1mm}{0mm}{purple},
+    fonttitle = \bfseries\sffamily,
+    breakable,
+    before skip = 3ex,
+    after skip = 3ex
+}{solution}
+\newcommand{\itemise}[1]{ \vspace{5pt}
+    \begin{itemize} \setlength \itemsep{1mm}
+        #1
+    \end{itemize}
+}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\newcommand{\card}{Second} % Problem sheet number
+ \newcommand{\course}{Complex Analysis} % Course name
+ \newcommand{\phrase}{One cannot study with attention the functions of a complex variable without being struck by the harmony which reigns in this theory.} % Inspirational phrase
+ \newcommand{\authorp}{Augustin-Louis Cauchy} % Author of the inspirational phrase
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{document}
+\pagenumbering{gobble} % Quita la numeracion de las paginas
+\setlength{\paperwidth}{595pt} %   Define el ancho del documento
+\setlength{\paperheight}{841pt} %  Define la altura del documento
+\textcolor{navy}{\begin{flushright}
+    {\Huge \textbf{\card\ Problem Sheet}}\\ [5pt]
+    {\LARGE \textbf{on}}\\ [5pt]
+    {\LARGE \textbf{\course}}\\ [30pt]
+\end{flushright}
+    {\LARGE \textbf{TA: Ronny Morales Carmona}} \vspace{-2pt}
+\begin{adjustwidth}{0mm}{10mm}
+    {\LARGE \textbf{Topics: Metric Topology of $\mathbb{C}$}}
+\end{adjustwidth} \vspace{-4pt}
+\begin{adjustwidth}{24.1mm}{0mm}
+    {\LARGE \textbf{Limits and Continuity}}
+\end{adjustwidth}
+\begin{adjustwidth}{110mm}{0mm}
+        \textsf{\large “\phrase"\\ [2pt]
+                       -\authorp}
+    \end{adjustwidth}}
+
+\vspace{10pt}
+\begin{adjustwidth}{5mm}{5mm} \fontsize{11pt}{0pt}
+
+
+\input{Problems.tex}
+
+
+\end{adjustwidth}
+\end{document}
